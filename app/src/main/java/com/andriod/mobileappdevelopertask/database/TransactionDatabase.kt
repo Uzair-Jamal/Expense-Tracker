@@ -6,20 +6,22 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.andriod.mobileappdevelopertask.entity.Transaction
 
-@Database(entities = [Transaction::class], version = 1)
+@Database(entities = [Transaction::class], version = 2)
 abstract class TransactionDatabase : RoomDatabase() {
-    abstract fun transactionDao() : TransactionDao
-    companion object{
-        @Volatile
-        private var INSTANCE: TransactionDatabase ?= null
+    abstract fun transactionDao(): TransactionDao
 
-        fun getDatabase(context: Context): TransactionDatabase{
-            return INSTANCE ?: synchronized(this){
+    companion object {
+        @Volatile
+        private var INSTANCE: TransactionDatabase? = null
+
+        fun getDatabase(context: Context): TransactionDatabase {
+            return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     TransactionDatabase::class.java,
                     "transaction_database"
-                ).build()
+                ).fallbackToDestructiveMigration(false)
+                    .build()
                 INSTANCE = instance
                 instance
             }

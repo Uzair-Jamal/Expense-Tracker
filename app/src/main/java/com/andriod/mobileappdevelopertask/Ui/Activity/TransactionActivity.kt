@@ -1,5 +1,6 @@
 package com.andriod.mobileappdevelopertask.Ui.Activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -15,5 +16,9 @@ class TransactionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTransactionBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.addTransaction.setOnClickListener {
+            startActivity(Intent(this, AddTransactionActivity::class.java))
+        }
     }
 }

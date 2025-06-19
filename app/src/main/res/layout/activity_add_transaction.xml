@@ -4,6 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -61,17 +66,53 @@
                     android:checked="true"/>
             </RadioGroup>
 
+            <TextView
+                android:id="@+id/amount_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="amount"
+                android:textSize="@dimen/_12ssp"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/transactionTypeGroup"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
             <EditText
                 android:id="@+id/amountInput"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
                 android:hint="@string/amount"
-                android:text="0"
-                app:layout_constraintTop_toBottomOf="@+id/transactionTypeGroup"
+                app:layout_constraintTop_toBottomOf="@+id/amount_tv"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="@dimen/_12sdp" />
+                android:layout_marginTop="@dimen/_5sdp" />
+
+            <TextView
+                android:id="@+id/date_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date"
+                android:textSize="@dimen/_12ssp"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/amountInput"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/dateInput"
+                android:hint="@string/select_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_12sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/date_tv"
+                android:background="?attr/selectableItemBackground"/>
 
             <EditText
                 android:id="@+id/descriptionInput"
@@ -79,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/description"
                 android:inputType="textMultiLine"
-                app:layout_constraintTop_toBottomOf="@+id/amountInput"
+                app:layout_constraintTop_toBottomOf="@+id/dateInput"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="@dimen/_12sdp" />
@@ -97,4 +138,5 @@
                 android:layout_marginTop="@dimen/_20sdp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>
