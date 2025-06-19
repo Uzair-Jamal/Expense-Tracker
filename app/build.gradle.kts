@@ -9,7 +9,7 @@ plugins {
 
 android {
     namespace = "com.andriod.mobileappdevelopertask"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.andriod.mobileappdevelopertask"
@@ -31,11 +31,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_18
+        targetCompatibility = JavaVersion.VERSION_18
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "18"
     }
     buildFeatures {
         viewBinding = true
@@ -44,8 +44,6 @@ android {
 }
 
 dependencies {
-
-    val nav_version = "2.9.0"
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -69,7 +67,7 @@ dependencies {
     implementation (libs.material.v1110)
 
     // chart
-    implementation (libs.mpandroidchart)
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
     //responsive SDP
     implementation (libs.sdp.android)
