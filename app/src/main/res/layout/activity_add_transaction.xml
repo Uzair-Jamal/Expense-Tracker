@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            >
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_transaction"
+                android:textSize="@dimen/_28ssp"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/_20sdp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Spinner
+                android:id="@+id/categorySpinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:entries="@array/categories"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/_12sdp" />
+
+            <RadioGroup
+                android:id="@+id/transactionTypeGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/categorySpinner"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/_12sdp">
+
+                <RadioButton
+                    android:id="@+id/incomeRadio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_16ssp"
+                    android:backgroundTint="@color/radio_button_tint"
+                    android:text="@string/income" />
+
+                <RadioButton
+                    android:id="@+id/expenseRadio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/expense"
+                    android:textSize="@dimen/_16ssp"
+                    android:backgroundTint="@color/radio_button_tint"
+                    android:checked="true"/>
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/amountInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:hint="@string/amount"
+                android:text="0"
+                app:layout_constraintTop_toBottomOf="@+id/transactionTypeGroup"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/_12sdp" />
+
+            <EditText
+                android:id="@+id/descriptionInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/description"
+                android:inputType="textMultiLine"
+                app:layout_constraintTop_toBottomOf="@+id/amountInput"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/_12sdp" />
+
+            <Button
+                android:id="@+id/saveButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/save"
+                android:backgroundTint="@color/app_color"
+                android:textColor="@android:color/white"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionInput"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/_20sdp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

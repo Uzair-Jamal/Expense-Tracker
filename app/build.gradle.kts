@@ -39,6 +39,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        dataBinding = true
     }
 }
 
@@ -64,9 +65,15 @@ dependencies {
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
 
+    // material
     implementation (libs.material.v1110)
 
+    // chart
     implementation (libs.mpandroidchart)
+
+    //responsive SDP
+    implementation (libs.sdp.android)
+    implementation (libs.ssp.android)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
