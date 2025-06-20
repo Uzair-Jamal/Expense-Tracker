@@ -27,8 +27,12 @@ class TransactionActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[TransactionViewmodel::class.java]
 
         setupRecyclerView()
-        binding.addTransaction.setOnClickListener {
+        binding.addTransactionBtn.setOnClickListener {
             startActivity(Intent(this, AddTransactionActivity::class.java))
+        }
+
+        binding.summaryTransactionBtn.setOnClickListener {
+            startActivity(Intent(this, SummaryTransactionActivity::class.java))
         }
     }
 

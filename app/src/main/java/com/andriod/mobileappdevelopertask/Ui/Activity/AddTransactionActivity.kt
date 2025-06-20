@@ -44,6 +44,7 @@ class AddTransactionActivity : AppCompatActivity() {
         }
 
         datePicker.addOnPositiveButtonClickListener {
+//            date = it
             date = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(Date(it))
             binding.dateInput.text = date
         }

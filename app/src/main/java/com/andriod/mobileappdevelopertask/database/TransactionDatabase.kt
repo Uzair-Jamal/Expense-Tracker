@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.andriod.mobileappdevelopertask.entity.Transaction
 
-@Database(entities = [Transaction::class], version = 2)
+@Database(entities = [Transaction::class], version = 4)
 abstract class TransactionDatabase : RoomDatabase() {
     abstract fun transactionDao(): TransactionDao
 

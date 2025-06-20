@@ -14,6 +14,6 @@ interface TransactionDao {
     suspend fun insert(transaction: Transaction)
     @Delete
     suspend fun delete(transaction: Transaction)
-    @Query("SELECT * FROM transactions ORDER BY date DESC")
+    @Query("SELECT * FROM transactions ORDER BY id DESC")
     fun getAllTransactions(): LiveData<List<Transaction>>
 }
