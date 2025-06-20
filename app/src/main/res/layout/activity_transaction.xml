@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,37 +11,100 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_10sdp"
             android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:text="Transactions"
-            android:textSize="@dimen/_28ssp"
-            android:textStyle="bold"
-            />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="Transactions"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:textSize="@dimen/_28ssp"
+                android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/add_transaction"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="+  Add Transaction"
-            android:textStyle="bold"
-            android:textColor="@color/app_color"
-            android:textSize="@dimen/_16ssp"
-            android:layout_marginBottom="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_16sdp"
-            android:backgroundTint="@android:color/transparent"
-            android:background="@drawable/button_outline"
-            />
+            <Button
+                android:id="@+id/add_transaction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_12sdp"
+                android:background="@drawable/button_outline"
+                android:backgroundTint="@android:color/transparent"
+                android:text="+  Add Transaction"
+                android:textAllCaps="false"
+                android:textColor="@color/app_color"
+                android:textSize="@dimen/_16ssp"
+                android:textStyle="bold" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/_5sdp"
+                android:paddingEnd="@dimen/_5sdp"
+                android:background="@color/app_color"
+                android:paddingTop="@dimen/_3sdp"
+                android:paddingBottom="@dimen/_3sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Type"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_3sdp"
+                    android:text="Category"
+                    android:textColor="@color/white"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_3sdp"
+                    android:text="Amount"
+                    android:textColor="@color/white"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_3sdp"
+                    android:layout_weight="1"
+                    android:text="Desc."
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_3sdp"
+                    android:text="Date"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/transaction_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp"
+                tools:listitem="@layout/item_transaction" />
         </LinearLayout>
 
 
