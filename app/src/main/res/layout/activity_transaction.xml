@@ -23,21 +23,47 @@
                 android:textSize="@dimen/_28ssp"
                 android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/add_transaction"
+            <LinearLayout
+                style="?android:attr/buttonBarStyle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_16sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_marginBottom="@dimen/_12sdp"
-                android:background="@drawable/button_outline"
-                android:backgroundTint="@android:color/transparent"
-                android:text="+  Add Transaction"
-                android:textAllCaps="false"
-                android:textColor="@color/app_color"
-                android:textSize="@dimen/_16ssp"
-                android:textStyle="bold" />
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/add_transaction"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_12sdp"
+                    android:background="@drawable/button_outline"
+                    android:backgroundTint="@android:color/transparent"
+                    android:text="Add Transaction"
+                    android:textAllCaps="false"
+                    android:textColor="@color/app_color"
+                    android:textSize="@dimen/_16ssp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/summary_transaction"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_12sdp"
+                    android:background="@drawable/button_outline"
+                    android:backgroundTint="@android:color/transparent"
+                    android:text="Transaction Summary"
+                    android:textAllCaps="false"
+                    android:textColor="@color/app_color"
+                    android:textSize="@dimen/_16ssp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -1,8 +1,10 @@
 package com.andriod.mobileappdevelopertask.Ui.Activity
 
 import android.app.Application
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -13,6 +15,7 @@ import com.andriod.mobileappdevelopertask.databinding.ActivityAddTransactionBind
 import com.andriod.mobileappdevelopertask.entity.Transaction
 import com.andriod.mobileappdevelopertask.viewModel.TransactionViewmodel
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -41,7 +44,6 @@ class AddTransactionActivity : AppCompatActivity() {
         }
 
         datePicker.addOnPositiveButtonClickListener {
-            val dateLong = it
             date = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(Date(it))
             binding.dateInput.text = date
         }
@@ -52,7 +54,7 @@ class AddTransactionActivity : AppCompatActivity() {
             category = binding.categorySpinner.selectedItem.toString()
 
             val selectedId = binding.transactionTypeGroup.checkedRadioButtonId
-            type = when(selectedId){
+            type = when (selectedId) {
                 R.id.expenseRadio -> binding.expenseRadio.text.toString()
                 R.id.incomeRadio -> binding.incomeRadio.text.toString()
                 else -> ""
@@ -67,10 +69,27 @@ class AddTransactionActivity : AppCompatActivity() {
             )
             Log.d("transaction", "$transaction")
 
-            viewModel.addTransaction(
-                transaction
-            )
-
+            if (amount.isNotBlank() && type.isNotBlank()
+                && category.isNotBlank() && date.isNotBlank()
+            ) {
+                viewModel.addTransaction(
+                    transaction
+                )
+                MaterialAlertDialogBuilder(this)
+                    .setMessage("Transaction inserted successfully")
+                    .setCancelable(false)
+                    .setPositiveButton("Ok") { dialog, _ ->
+                        dialog.dismiss()
+                        startActivity(Intent(this, TransactionActivity::class.java))
+                    }
+                    .show()
+            } else {
+                MaterialAlertDialogBuilder(this)
+                    .setMessage("Please provide value for required fields")
+                    .setCancelable(false)
+                    .setPositiveButton("Ok") { dialog, _ -> dialog.dismiss() }
+                    .show()
+            }
         }
     }
 }
