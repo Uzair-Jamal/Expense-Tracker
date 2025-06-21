@@ -21,13 +21,25 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+
+
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+        android.applicationVariants.all {
+            outputs.all {
+                val buildType = buildType.name
+                val version = versionName ?: "1.0"
+                val newApkName = "Expense-Tracker_${buildType}_v${version}.apk"
+
+                (this as com.android.build.gradle.internal.api.BaseVariantOutputImpl).outputFileName = newApkName
+            }
         }
     }
     compileOptions {
@@ -40,6 +52,17 @@ android {
     buildFeatures {
         viewBinding = true
         dataBinding = true
+    }
+
+    lint {
+        disable += "NullSafeMutableLiveData"
+    }
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_18)
+        freeCompilerArgs.add("-Xuse-k2=false")
     }
 }
 
