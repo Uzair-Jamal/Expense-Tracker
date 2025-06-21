@@ -19,3 +19,11 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Keep Android app entry points
+-keep class com.andriod.mobileappdevelopertask.**.AddTransactionActivity { *; }
+-keep class com.andriod.mobileappdevelopertask.**.SummaryTransactionActivity { *; }
+-keep class com.andriod.mobileappdevelopertask.**.TransactionActivity { *; }
+
+# Keep ViewBinding or DataBinding
+-keepclassmembers class **ViewBinding { *; }
