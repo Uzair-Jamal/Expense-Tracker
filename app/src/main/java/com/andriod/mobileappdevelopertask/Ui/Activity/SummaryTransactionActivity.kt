@@ -4,17 +4,26 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import java.time.format.DateTimeFormatter
 import androidx.lifecycle.ViewModelProvider
+import com.andriod.mobileappdevelopertask.MonthlySummary
 import com.andriod.mobileappdevelopertask.R
 import com.andriod.mobileappdevelopertask.databinding.ActivitySummaryTransactionBinding
 import com.andriod.mobileappdevelopertask.viewModel.TransactionViewmodel
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import java.time.LocalDate
+import java.time.YearMonth
+import java.util.Locale
 
 class SummaryTransactionActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySummaryTransactionBinding
     private lateinit var viewModel: TransactionViewmodel
+    private var totalIncome = 0
+    private var totalExpense = 0
+    private var netSavings = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySummaryTransactionBinding.inflate(layoutInflater)
@@ -23,17 +32,19 @@ class SummaryTransactionActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[TransactionViewmodel::class.java]
 
         viewModel.allTransactions.observe(this) { transactions ->
-            val totalIncome = transactions
+            totalIncome = transactions
                 .filter { it.type == "Income" }
                 .sumOf { it.amount.toInt() }
 
-            val totalExpense = transactions
+            totalExpense = transactions
                 .filter { it.type == "Expense" }
                 .sumOf { it.amount.toInt() }
 
+            netSavings = totalIncome - totalExpense
+
             binding.incomeTv.text = "Rs $totalIncome"
             binding.expenseTv.text = "Rs $totalExpense"
-            binding.netSavingsTv.text = "Rs ${totalIncome - totalExpense}"
+            binding.netSavingsTv.text = "Rs $netSavings"
 
             // Setup PieChart using these values
             val pieEntries = listOf(
@@ -63,7 +74,7 @@ class SummaryTransactionActivity : AppCompatActivity() {
                 invalidate() // Refresh chart
             }
         }
-
-
     }
+
+
 }

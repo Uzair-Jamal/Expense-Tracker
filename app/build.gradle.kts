@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "com.andriod.mobileappdevelopertask"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -54,6 +54,7 @@ dependencies {
     // ViewModel LiveData
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.core.i18n)
 
     // Room Database
     kapt(libs.androidx.room.compiler)
