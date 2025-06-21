@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -14,168 +13,180 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
-            >
+            android:layout_marginBottom="@dimen/_10sdp">
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:text="@string/add_transaction"
                 android:textSize="@dimen/_28ssp"
                 android:textStyle="bold"
-                android:layout_marginTop="@dimen/_20sdp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/category_heading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:text="Category*"
                 android:textSize="@dimen/_14ssp"
                 android:textStyle="bold"
-                android:layout_marginTop="@dimen/_10sdp"
-                app:layout_constraintTop_toBottomOf="@+id/title"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title" />
 
-            <Spinner
+            <EditText
                 android:id="@+id/categorySpinner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:entries="@array/categories"
-                android:textSize="@dimen/_14ssp"
-                app:layout_constraintTop_toBottomOf="@+id/category_heading"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:hint="@string/category"
+                android:textSize="@dimen/_12ssp"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="@dimen/_5sdp" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/category_heading" />
 
             <TextView
                 android:id="@+id/type_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
                 android:text="Type*"
                 android:textSize="@dimen/_14ssp"
                 android:textStyle="bold"
-                android:layout_marginTop="@dimen/_8sdp"
-                app:layout_constraintTop_toBottomOf="@+id/categorySpinner"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/categorySpinner" />
 
             <RadioGroup
                 android:id="@+id/transactionTypeGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_3sdp"
                 android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@+id/type_tv"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="@dimen/_3sdp">
+                app:layout_constraintTop_toBottomOf="@+id/type_tv">
 
                 <RadioButton
                     android:id="@+id/incomeRadio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_16ssp"
                     android:backgroundTint="@color/radio_button_tint"
-                    android:text="@string/income" />
+                    android:text="@string/income"
+                    android:textSize="@dimen/_16ssp" />
 
                 <RadioButton
                     android:id="@+id/expenseRadio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/expense"
-                    android:textSize="@dimen/_16ssp"
                     android:backgroundTint="@color/radio_button_tint"
-                    android:checked="true"/>
+                    android:checked="true"
+                    android:text="@string/expense"
+                    android:textSize="@dimen/_16ssp" />
             </RadioGroup>
 
             <TextView
                 android:id="@+id/amount_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:text="Amount*"
                 android:textSize="@dimen/_14ssp"
                 android:textStyle="bold"
-                android:layout_marginTop="@dimen/_10sdp"
-                app:layout_constraintTop_toBottomOf="@+id/transactionTypeGroup"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/transactionTypeGroup" />
 
             <EditText
                 android:id="@+id/amountInput"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:background="@android:color/transparent"
+                android:clickable="true"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:hint="@string/amount"
-                app:layout_constraintTop_toBottomOf="@+id/amount_tv"
-                app:layout_constraintStart_toStartOf="parent"
+                android:inputType="none"
+                android:textSize="@dimen/_12ssp"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="@dimen/_3sdp" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/amount_tv" />
+
 
             <TextView
                 android:id="@+id/date_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:text="Date*"
                 android:textSize="@dimen/_14ssp"
                 android:textStyle="bold"
-                android:layout_marginTop="@dimen/_10sdp"
-                app:layout_constraintTop_toBottomOf="@+id/amountInput"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/amountInput" />
 
             <TextView
                 android:id="@+id/dateInput"
-                android:hint="@string/select_date"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginBottom="@dimen/_12sdp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:background="?attr/selectableItemBackground"
+                android:hint="@string/select_date"
+                android:textSize="@dimen/_12ssp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/date_tv"
-                android:background="?attr/selectableItemBackground"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/date_tv" />
 
             <TextView
                 android:id="@+id/description_heading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:text="Description"
                 android:textSize="@dimen/_14ssp"
                 android:textStyle="bold"
-                android:layout_marginTop="@dimen/_10sdp"
-                app:layout_constraintTop_toBottomOf="@+id/dateInput"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dateInput" />
 
             <EditText
                 android:id="@+id/descriptionInput"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_3sdp"
                 android:hint="@string/description"
                 android:inputType="textMultiLine"
-                app:layout_constraintTop_toBottomOf="@+id/description_heading"
-                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="@dimen/_12ssp"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="@dimen/_3sdp" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/description_heading" />
 
             <Button
                 android:id="@+id/saveButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/save"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:backgroundTint="@color/app_color"
+                android:text="@string/save"
                 android:textColor="@android:color/white"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionInput"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="@dimen/_20sdp" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionInput" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
+        <include
+            android:id="@+id/customKeyboard"
+            layout="@layout/custom_keyboard_view"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </FrameLayout>
 </layout>

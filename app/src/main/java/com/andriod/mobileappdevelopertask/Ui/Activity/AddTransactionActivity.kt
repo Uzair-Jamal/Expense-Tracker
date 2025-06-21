@@ -2,8 +2,11 @@ package com.andriod.mobileappdevelopertask.Ui.Activity
 
 import android.app.Application
 import android.content.Intent
+import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
+import android.view.MotionEvent
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +15,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.andriod.mobileappdevelopertask.R
 import com.andriod.mobileappdevelopertask.databinding.ActivityAddTransactionBinding
+import com.andriod.mobileappdevelopertask.databinding.CustomKeyboardViewBinding
 import com.andriod.mobileappdevelopertask.entity.Transaction
 import com.andriod.mobileappdevelopertask.viewModel.TransactionViewmodel
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -27,17 +31,64 @@ class AddTransactionActivity : AppCompatActivity() {
     private var amount: String = ""
     private var description: String = ""
     private var date: String = ""
+    private var amountText = ""
     private lateinit var viewModel: TransactionViewmodel
+    private lateinit var keyboardBinding: CustomKeyboardViewBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddTransactionBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        keyboardBinding = binding.customKeyboard
 
         viewModel = ViewModelProvider(this)[TransactionViewmodel::class.java]
 
         val datePicker = MaterialDatePicker.Builder.datePicker()
             .setTitleText("Select Date")
             .build()
+
+        binding.amountInput.setOnClickListener {
+            binding.customKeyboard.root.visibility = View.VISIBLE
+        }
+
+        binding.amountInput.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                binding.customKeyboard.root.visibility = View.VISIBLE
+            } else {
+                binding.customKeyboard.root.visibility = View.GONE
+            }
+        }
+
+        keyboardBinding.btnDone.setOnClickListener {
+            // Hide custom keyboard
+            keyboardBinding.root.visibility = View.GONE
+
+            // Optionally clear focus
+            binding.amountInput.clearFocus()
+        }
+
+
+        // Setup button click logic
+        val buttons = listOf(
+            keyboardBinding.btn0, keyboardBinding.btn1, keyboardBinding.btn2,
+            keyboardBinding.btn3, keyboardBinding.btn4, keyboardBinding.btn5,
+            keyboardBinding.btn6, keyboardBinding.btn7, keyboardBinding.btn8,
+            keyboardBinding.btn9, keyboardBinding.btnDot
+        )
+
+        buttons.forEach { btn ->
+            btn.setOnClickListener {
+                amountText += btn.text
+                binding.amountInput.setText(amountText)
+            }
+        }
+
+        keyboardBinding.btnDel.setOnClickListener {
+            if (amountText.isNotEmpty()) {
+                amountText = amountText.dropLast(1)
+                binding.amountInput.setText(amountText)
+            }
+        }
 
         binding.dateInput.setOnClickListener {
             datePicker.show(supportFragmentManager, "DATE_PICKER")
@@ -52,7 +103,7 @@ class AddTransactionActivity : AppCompatActivity() {
         binding.saveButton.setOnClickListener {
             amount = binding.amountInput.text.toString()
             description = binding.descriptionInput.text.toString()
-            category = binding.categorySpinner.selectedItem.toString()
+            category = binding.categorySpinner.text.toString()
 
             val selectedId = binding.transactionTypeGroup.checkedRadioButtonId
             type = when (selectedId) {
@@ -93,4 +144,26 @@ class AddTransactionActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+        val view = currentFocus
+        if (view != null && ev.action == MotionEvent.ACTION_DOWN) {
+            val outRectEditText = Rect()
+            val outRectKeyboard = Rect()
+
+            binding.amountInput.getGlobalVisibleRect(outRectEditText)
+            binding.customKeyboard.root.getGlobalVisibleRect(outRectKeyboard)
+
+            val isOutsideEditText = !outRectEditText.contains(ev.rawX.toInt(), ev.rawY.toInt())
+            val isOutsideKeyboard = !outRectKeyboard.contains(ev.rawX.toInt(), ev.rawY.toInt())
+
+            if (isOutsideEditText && isOutsideKeyboard) {
+                view.clearFocus()
+                binding.customKeyboard.root.visibility = View.GONE
+            }
+        }
+        return super.dispatchTouchEvent(ev)
+    }
+
+
 }
