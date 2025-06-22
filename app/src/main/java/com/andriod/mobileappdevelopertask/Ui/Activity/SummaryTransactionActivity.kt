@@ -1,5 +1,6 @@
 package com.andriod.mobileappdevelopertask.Ui.Activity
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -31,6 +32,9 @@ class SummaryTransactionActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[TransactionViewmodel::class.java]
 
+        binding.back.setOnClickListener {
+            startActivity(Intent(this, TransactionActivity::class.java))
+        }
         viewModel.allTransactions.observe(this) { transactions ->
             totalIncome = transactions
                 .filter { it.type == "Income" }

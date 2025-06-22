@@ -72,11 +72,12 @@
                 android:background="@color/app_color"
                 android:text="9" />
 
-            <Button
-                android:id="@+id/btnDot"
+            <ImageButton
+                android:id="@+id/btnDone"
                 style="@style/KeyStyle"
+                android:src="@drawable/ic_done"
                 android:background="@color/income_color"
-                android:text="." />
+                />
 
             <Button
                 android:id="@+id/btn0"
@@ -84,21 +85,15 @@
                 android:background="@color/app_color"
                 android:text="0" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/btnDel"
                 style="@style/KeyStyle"
                 android:background="@color/expense_color"
-                android:text="⌫" />
+                android:src="@drawable/ic_del"
+                />
 
         </GridLayout>
-        <Button
-            android:id="@+id/btnDone"
-            style="@style/KeyStyle"
-            android:text="Done"
-            android:textAllCaps="false"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/expense_color" />
+
     </LinearLayout>
 
 

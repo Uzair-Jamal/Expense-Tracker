@@ -1,12 +1,15 @@
 package com.andriod.mobileappdevelopertask.Ui.Activity
 
 import android.app.Application
+import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -51,6 +54,22 @@ class AddTransactionActivity : AppCompatActivity() {
             binding.customKeyboard.root.visibility = View.VISIBLE
         }
 
+        binding.back.setOnClickListener {
+            startActivity(Intent(this, TransactionActivity::class.java))
+        }
+
+        binding.categorySpinner.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                // Hide keyboard
+                val imm = v.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(v.windowToken, 0)
+                true
+            } else {
+                false
+            }
+        }
+
+
         binding.amountInput.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 binding.customKeyboard.root.visibility = View.VISIBLE
@@ -73,7 +92,6 @@ class AddTransactionActivity : AppCompatActivity() {
             keyboardBinding.btn0, keyboardBinding.btn1, keyboardBinding.btn2,
             keyboardBinding.btn3, keyboardBinding.btn4, keyboardBinding.btn5,
             keyboardBinding.btn6, keyboardBinding.btn7, keyboardBinding.btn8,
-            keyboardBinding.btn9, keyboardBinding.btnDot
         )
 
         buttons.forEach { btn ->
@@ -89,6 +107,7 @@ class AddTransactionActivity : AppCompatActivity() {
                 binding.amountInput.setText(amountText)
             }
         }
+
 
         binding.dateInput.setOnClickListener {
             datePicker.show(supportFragmentManager, "DATE_PICKER")
